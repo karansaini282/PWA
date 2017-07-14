@@ -1,0 +1,55 @@
+<html>
+<head>
+ <link rel="manifest" href="./manifest.json">
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+ <script src='./ang1.js'></script>
+</head>
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+   <a class="navbar-brand"><span style='color:lightblue'>PWA test</span></a>
+    </div>
+    <ul class="nav navbar-nav">
+    </ul>
+  </div>
+</nav>
+     <div class="container">
+	 <div class="row">
+	 <div class="col-sm-4">
+	 </div>
+	  <div class="col-sm-4">
+    <form role='form' name="formMessage" id="formMessage" novalidate>
+    <div class="form-group">
+    <label for="messages.user">User</label>
+    <input type='text' class='form-control' id='messages.user' name='user' ng-model='messages.user' required>
+	<span class="showError" ng-show="formMessage.user.$touched && formMessage.user.$invalid">
+	<span ng-show="formMessage.user.$error.required"></span>
+	</span>
+    </div>
+	 <div class="form-group">
+    <label for="messages.message">Message</label>
+    <input type='text' class='form-control' id='messages.message' name='message' ng-model='messages.message' required>
+	<span class="showError" ng-show="formMessage.message.$touched && formMessage.message.$invalid">
+	<span ng-show="formMessage.message.$error.required"></span>
+	</span>
+    </div>
+    <div class="form-group">
+    <button class='form-control submitButton' id="formSubmit" type="button">Submit</button>            
+    </div>
+   </form>
+    </div>
+    <div class="col-sm-4">
+	 </div>
+   </div>
+   </div>
+</div>
+</body>
+</html>
