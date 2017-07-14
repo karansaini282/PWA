@@ -1,26 +1,26 @@
-var dataCacheName = ‘dataCache’;
-var cacheName = ‘fileCache’;
+var dataCacheName = 'dataCache';
+var cacheName = 'fileCache';
 var filesToCache = [
- ‘/’,
- ‘/index.html’,
- ‘/ang1.js’
+ '/',
+ '/index.html',
+ '/ang1.js'
 ];
-self.addEventListener(‘install’, function(e) {
- console.log(‘[ServiceWorker] Install’);
+self.addEventListener('install', function(e) {
+ console.log('[ServiceWorker] Install');
  e.waitUntil(
  caches.open(cacheName).then(function(cache) {
- console.log(‘[ServiceWorker] Caching app shell’);
+ console.log('[ServiceWorker] Caching app shell');
  return cache.addAll(filesToCache);
  })
  );
 });
-self.addEventListener(‘activate’, function(e) {
- console.log(‘[ServiceWorker] Activate’);
+self.addEventListener('activate', function(e) {
+ console.log('[ServiceWorker] Activate');
  e.waitUntil(
  caches.keys().then(function(keyList) {
  return Promise.all(keyList.map(function(key) {
  if (key !== cacheName && key !== dataCacheName) {
- console.log(‘[ServiceWorker] Removing old cache’, key);
+ console.log('[ServiceWorker] Removing old cache', key);
  return caches.delete(key);
  }
  }));
@@ -28,8 +28,8 @@ self.addEventListener(‘activate’, function(e) {
  );
  return self.clients.claim();
 });
-self.addEventListener(‘fetch’, function(e) {
- console.log(‘[Service Worker] Fetch’, e.request.url);
+self.addEventListener('fetch', function(e) {
+ console.log('[Service Worker] Fetch', e.request.url);
  e.respondWith( 
  caches.match(e.request).then(function(response) {
  return response || fetch(e.request);
